@@ -22,7 +22,7 @@
     </style>
 </head>
 <body id="myPage">
-  <nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
+  <nav class="navbar navbar-inverse navbar-fixed-top navbar-custom" id="myNavbar">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -30,7 +30,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#"><img src="img/logoSwapify.png" alt="AXIO INVESTMENT"></a>
+        <a class="navbar-brand" href="#"><img src="img/logoSwapify.png" alt="Swapify"></a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
@@ -51,7 +51,7 @@
     <center><h2>MUSIC</h2></center>
   </div>
 
-      <div class="container">
+  <div class="container">
       <div id="login">
         <h1>This is an example of the Authorization Code flow</h1>
         <a href="/login" class="btn btn-primary">Log in with Spotify</a>
@@ -62,11 +62,73 @@
         <div id="oauth">
         </div>
         <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
+      </div>
+  </div>
+    <!--Start of statistics-->
+  <div class="container-fluid">
+    <div class="row section" id="section-user-playlists">
+
+      <div class="heading-title text-center">
+        <h3 class="text-uppercase">Playlists</h3>
+        <hr class="title-divider">
         <div id="user-playlists">
         </div>
       </div>
-    </div>
 
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!--Start of FAQ-->
+  <div class="container-fluid">
+    <div class="row section" id="faq">
+      <div class="heading-title text-center">
+        <h3 class="text-uppercase">Section 2</h3>
+        <hr class="title-divider">
+      </div>
+    </div>
+  </div>
+
+  <!--Start of invest-->
+  <div class="container-fluid">
+    <div class="row section" id="invest">
+      <div class="heading-title text-center">
+        <h3 class="text-uppercase">Section 3</h3>
+        <hr class="title-divider">
+      </div>
+    </div>
+  </div>
+
+  <!--Start of Contact-->
+  <div class="container-fluid">
+    <div class="row section" id="contact">
+
+      <div class="heading-title text-center">
+        <h3 class="text-uppercase">Section 4</h3>
+        <hr class="title-divider">
+      </div>
+      <div class="col-md-12 col-sm-12 maily">
+
+
+        <div class="contact-mail-box">
+          <span>
+          </span><span class="button dimond">INFO@SWAPIFY.COM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <footer class="container-fluid text-center">
+    <a href="#myPage" title="To Top">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+    <p id="footer-text">Made with <span class="fa fa-heart" id="heart-footer"></span> by <a href="https://twitter.com/cryptocrisK" title="HackRis">a group of UI lovers</a></p>
+  </footer>
 
 
     <script id="user-profile-template" type="text/x-handlebars-template">
@@ -98,17 +160,19 @@
     </script>
 
     <script id="playlist-template" type="text/x-handlebars-template">
-      <h2>Playlists</h2>
-      <dl class="dl-horizontal">
-        {{#each items}}
-          <dt>{{this.name}}</dt>
-          <dd class="text-overflow">
-            <img class="someClass" src="{{this.images.2.url}}">
-          </dd>
-          <button class="btn-info">Swapify</button>
-          <br></br>
-        {{/each}}
-      </dl>
+      {{#each items}}
+        <div class=" col-md-6 col-lg-4">
+          <div class="media person">
+            <div class="media-left">
+              <img src=" {{this.images.1.url}} " alt="image ">
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading person-name ">{{this.name}}</h4>
+            </div>
+          </div>
+          <button class="btn-success">Swapify</button>
+        </div>
+      {{/each}}
     </script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
@@ -207,71 +271,6 @@
         }
       })();
     </script>
-
-  <!--Start of statistics-->
-  <div class="container-fluid">
-    <div class="row section" id="section-user-playlists">
-
-      <div class="heading-title text-center">
-        <h3 class="text-uppercase">Playlists</h3>
-        <hr class="title-divider">
-
-      </div>
-
-      </div>
-    </div>
-  </div>
-
-
-
-
-  <!--Start of FAQ-->
-  <div class="container-fluid">
-    <div class="row section" id="faq">
-      <div class="heading-title text-center">
-        <h3 class="text-uppercase">Section 2</h3>
-        <hr class="title-divider">
-      </div>
-    </div>
-  </div>
-
-  <!--Start of invest-->
-  <div class="container-fluid">
-    <div class="row section" id="invest">
-      <div class="heading-title text-center">
-        <h3 class="text-uppercase">Section 3</h3>
-        <hr class="title-divider">
-      </div>
-    </div>
-  </div>
-
-  <!--Start of Contact-->
-  <div class="container-fluid">
-    <div class="row section" id="contact">
-
-      <div class="heading-title text-center">
-        <h3 class="text-uppercase">Section 4</h3>
-        <hr class="title-divider">
-      </div>
-      <div class="col-md-12 col-sm-12 maily">
-
-
-        <div class="contact-mail-box">
-          <span>
-          </span><span class="button dimond">INFO@SWAPIFY.COM</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <footer class="container-fluid text-center">
-    <a href="#myPage" title="To Top">
-      <span class="glyphicon glyphicon-chevron-up"></span>
-    </a>
-    <p id="footer-text">Made with <span class="fa fa-heart" id="heart-footer"></span> by <a href="https://twitter.com/cryptocrisK" title="HackRis">a group of UI lovers</a></p>
-  </footer>
 
 </body>
 </html>
