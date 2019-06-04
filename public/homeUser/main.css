@@ -1,0 +1,145 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+#particles-js {
+  height: 100%;
+  background-color: #000;
+  background: grey; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(black, white); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(black, white); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(black, white); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(black, white); /* Standard syntax */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.navbar-custom {
+  background-color: white !important;
+  height: 80px;
+}
+
+.navbar-brand > img {
+  width: 150px;
+  height: auto;
+}
+
+.navbar-brand {
+  height: 70px;
+}
+
+.nav > li > a {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 20px;
+}
+
+.navbar-toggle {
+  padding: 10px;
+  margin: 25px 15px 25px 0;
+}
+.nav.navbar-nav.navbar-right li a:hover {
+  text-decoration: overline;
+}
+
+.nav.navbar-nav.navbar-right li a {
+  color: black;
+  letter-spacing: 3px;
+  line-height: 1.42857143 !important;
+  font-size: 14px;
+  z-index: 9999;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+.navbar-nav li a:hover,
+.navbar-nav li.active a {
+  color: black !important;
+}
+.navbar-default .navbar-toggle {
+  border-color: transparent;
+  color: blue !important;
+}
+.text {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  color: white;
+  max-width: 90%;
+  padding: 2em 3em;
+  background: rgba(8, 0, 0, 0.2);
+  text-shadow: 0px 0px 2px #131415;
+  font-family: "Megrim", cursive;
+}
+h1 {
+  font-size: 5em;
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: 5px;
+}
+
+a,
+a:visited {
+  color: $link;
+  transition: 0.25s;
+}
+
+a:hover,
+a:focus {
+  color: $link-hover;
+}
+
+/*section & title-divider*/
+.section {
+  padding-bottom: 300px;
+  padding-top: 75px;
+}
+
+.title-divider {
+  border-top: 4px solid #ffffff;
+  border-bottom: 1px solid rgba(0, 4, 0, 0.2);
+  border-color: #000000;
+  width: 200px;
+  border-radius: 10px;
+}
+
+/*Footer*/
+footer .glyphicon {
+  font-size: 50px;
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.3);
+  margin-top: 70px;
+}
+
+#footer-text {
+  letter-spacing: 5px;
+  font-family: megrim;
+}
+#footer-text a {
+  text-decoration: underline;
+  color: black;
+}
+#heart-footer {
+  color: #f00;
+  font-size: 20px;
+}
+
+/*Black Huge Mail Label*/
+.maily {
+  background-color: black;
+}
+.dimond {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  letter-spacing: 15px;
+  font-size: 25px;
+  color: white;
+  text-align: center;
+  border-width: 2px 0;
+  position: relative;
+  display: block;
+  padding: 0.75em 0 0.75em 0.5em;
+  margin-left: 1.6em;
+  margin-right: 1.6em;
+}

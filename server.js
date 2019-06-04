@@ -102,7 +102,7 @@ app.get('/home', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/home2.html?' +
+        res.redirect('/homeUser/index.html?' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token

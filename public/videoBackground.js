@@ -12,7 +12,7 @@
 
     // autoplay: false,
 
-    isMobile: window.matchMedia("(max-width: 768px)").matches,
+    //isMobile: window.matchMedia("(max-width: 768px)").matches,
 
     // Array of objects containing the src and type
     // of different video formats to add
