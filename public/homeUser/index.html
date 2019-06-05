@@ -19,6 +19,45 @@
         white-space: nowrap;
         width: 500px;
       }
+      .playlist-title {
+        position: absolute;
+        top: 50%;
+        left: 0px;
+        width: 100%;
+        z-index: 2;
+        line-height: 1.2rem;
+        opacity: 0.8;
+        color: #fff;
+        background-color: #1DB954;
+      }
+      .playlist-image {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        z-index: 1; 
+      }
+      .playlist-image img:hover {
+        transform: rotate(20deg);
+        transition: 0.5s;
+      }
+
+      .frame-hexagon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 4;
+      }
+      .frame-hexagon img{
+        width: 100%;
+      }
+
+      .frame-hexagon img:hover{
+        transform: rotate(20deg);
+        transition: 0.5s;
+      }
+
     </style>
 </head>
 <body id="myPage">
@@ -160,19 +199,21 @@
     </script>
 
     <script id="playlist-template" type="text/x-handlebars-template">
-      {{#each items}}
-        <div class=" col-md-6 col-lg-4">
-          <div class="media person">
-            <div class="media-left">
-              <img src=" {{this.images.0.url}} " alt="image ">
-            </div>
-            <div class="media-body">
-              <h4 class="media-heading person-name ">{{this.name}}</h4>
-            </div>
+        <div class="container-fluid">
+          <div class="row">
+            {{#each items}}
+                <div class=" col-xs-12 col-md-6 col-lg-4">
+                  <div class="playlist-image">
+                      <img src="{{this.images.0.url}}" class="img-fluid" style="max-width: 100%" alt="image">
+                      <div class="playlist-title text-center">
+                        <h4 class="media-heading person-name ">{{this.name}}</h4>
+                      </div>
+                      <div class="frame-hexagon img-fluid"><img src="img/hexa-frame.png"></div>
+                  </div>
+                </div>
+            {{/each}}
           </div>
-          <button class="btn-success">Swapify</button>
         </div>
-      {{/each}}
     </script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
@@ -272,5 +313,26 @@
       })();
     </script>
 
+    <script>
+      /*Helper to display a row every 3 items*/
+      Handlebars.registerHelper('ifThird', function (index, options) {
+       if((index)%3 == 0){
+          return options.fn(this);
+       } else {
+          return options.inverse(this);
+       }
+      });
+    </script>
+    <script>
+      /*Helper to display a row every 3 items*/
+      Handlebars.registerHelper('ifThird2', function (index, options) {          
+       if((index-3) % 3 == 0){
+          return options.fn(this);
+       } 
+       else {
+          return options.inverse(this);
+       }
+      });
+    </script>
 </body>
 </html>
