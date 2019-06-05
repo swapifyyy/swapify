@@ -6,8 +6,9 @@
   <link rel="stylesheet" href="main.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Megrim" rel="stylesheet">
-  <link rel="shortcut icon" type="image/Axio" href="favicon.ico?"/>
+  <link rel="shortcut icon" type="image" href="favicon.ico?"/>
   <link rel="stylesheet" href="img/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/brands.css" integrity="sha384-IiIL1/ODJBRTrDTFk/pW8j0DUI5/z9m1KYsTm/RjZTNV8RHLGZXkUDwgRRbbQ+Jh" crossorigin="anonymous">
 
     <style type="text/css">
       #login, #loggedin {
@@ -24,11 +25,11 @@
         top: 50%;
         left: 0px;
         width: 100%;
-        z-index: 2;
+        z-index: 3;
         line-height: 1.2rem;
         opacity: 0.8;
-        color: #fff;
-        background-color: #1DB954;
+        color: #000;
+        background-color: #fff;
       }
       .playlist-image {
         position: relative;
@@ -40,23 +41,80 @@
         transform: rotate(20deg);
         transition: 0.5s;
       }
+     
+     /*TRICK HEXAGON*/
+  .hexagon {
+  position: relative;
+  width: 300px; 
+  height: 173.21px;
+  margin: 86.60px 0;
+  background-size: auto 346.4102px;
+  background-position: center;
+  box-shadow: 0 0 30px rgba(26,203,0,0.85);
+}
+.hexagon:hover{
+  transform: scale(1.3);
+  transition: 0.5s;
+}
 
-      .frame-hexagon {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 4;
-      }
-      .frame-hexagon img{
-        width: 100%;
-      }
+.hexTop,
+.hexBottom {
+  position: absolute;
+  z-index: 1;
+  width: 212.13px;
+  height: 212.13px;
+  overflow: hidden;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background: inherit;
+  right: 0px;
+  box-shadow: 0 0 30px rgba(26,203,0,0.85);
+}
 
-      .frame-hexagon img:hover{
-        transform: scale(0.5) scale(1) rotate(90deg);
-        transition: 1s;
-      }
+/*counter transform the bg image on the caps*/
+.hexTop:after,
+.hexBottom:after {
+  content: "";
+  position: absolute;
+  width: 300.0000px;
+  height: 173.20508075688775px;
+  -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
+  -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
+  transform:          rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  background: inherit;
+}
+
+.hexTop {
+  top: -106.0660px;
+}
+
+.hexTop:after {
+  background-position: center top;
+}
+
+.hexBottom {
+  bottom: -106.0660px;
+}
+
+.hexBottom:after {
+  background-position: center bottom;
+}
+
+.hexagon:after {
+  content: "";
+  position: absolute;
+  top: 0.0000px;
+  left: 0px;
+  width: 300.0000px;
+  height: 173.2051px;
+  z-index: 2;
+  background: inherit;
+}
+/*END TRICK HEXAGON*/
 
     </style>
 </head>
@@ -73,10 +131,10 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#faq">Section 1</a></li>
+          <li><a href="#faq">Stats</a></li>
           <li><a href="#statistics">Section 2</a></li>
           <li><a href="#invest">Section 3</a></li>
-          <li><a href="#contact">Section 4</a></li>
+          <li><a href="#donations">Donations</a></li>
         </ul>
       </div>
     </div>
@@ -100,7 +158,10 @@
         </div>
         <div id="oauth">
         </div>
-        <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
+        <div class="row text-center">
+          <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
+        </div>
+        
       </div>
   </div>
 
@@ -148,10 +209,10 @@
 
   <!--Start of Contact-->
   <div class="container-fluid">
-    <div class="row section" id="contact">
+    <div class="row section" id="donations">
 
       <div class="heading-title text-center">
-        <h3 class="text-uppercase">Section 4</h3>
+        <h3 class="text-uppercase"><i class="fab fa-bitcoin"></i> Donations</h3>
         <hr class="title-divider">
       </div>
       <div class="col-md-12 col-sm-12 maily">
@@ -159,7 +220,8 @@
 
         <div class="contact-mail-box">
           <span>
-          </span><span class="button dimond">INFO@SWAPIFY.COM</span>
+          </span><span class="button dimond">3J5oLbiFNFEst9wjRdEW3BrCqtpS3aHatN</span>
+          
         </div>
       </div>
     </div>
@@ -171,50 +233,46 @@
     <a href="#myPage" title="To Top">
       <span class="glyphicon glyphicon-chevron-up"></span>
     </a>
-    <p id="footer-text">Made with <span class="fa fa-heart" id="heart-footer"></span> by <a href="https://twitter.com/cryptocrisK" title="HackRis">a group of UI lovers</a></p>
+    <p id="footer-text">Made with <span class="fa fa-heart" id="heart-footer"></span> by a group of UI lovers</p>
   </footer>
 
 
     <script id="user-profile-template" type="text/x-handlebars-template">
-      <h1>Logged in as {{display_name}}</h1>
-      <div class="media">
-        <div class="pull-left">
-          <img class="media-object" width="150" src="{{images.0.url}}" />
-        </div>
-        <div class="media-body">
-          <dl class="dl-horizontal">
-            <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
-            <dt>Id</dt><dd>{{id}}</dd>
-            <dt>Email</dt><dd>{{email}}</dd>
-            <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
-            <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
-            <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
-            <dt>Country</dt><dd>{{country}}</dd>
-          </dl>
+      <div class="row text-center">
+        <div class="col-md-12 col-xs-12 col-lg-12">
+          <h1>Logged in as {{display_name}}</h1>
         </div>
       </div>
+
     </script>
 
     <script id="oauth-template" type="text/x-handlebars-template">
-      <h2>oAuth info</h2>
-      <dl class="dl-horizontal">
-        <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
-        <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}</dd>
-      </dl>
+      <div class="row text-center">
+        <div class="col-md-12 col-xs-12 col-lg-12">
+          <dl class="dl-horizontal">
+            <dt>Access token</dt><dd >{{access_token}}</dd>
+            <dt>Refresh token</dt><dd >{{refresh_token}}</dd>
+          </dl>
+        </div>
+      </div> 
     </script>
 
     <script id="playlist-template" type="text/x-handlebars-template">
         <div class="container-fluid">
-          <div class="row">
+          <div class="row text-center">
             {{#each items}}
                 <div class=" col-xs-6 col-md-6 col-lg-4">
-                  <div class="playlist-image">
-                      <img src="{{this.images.0.url}}" class="img-fluid" style="max-width: 100%" alt="image">
-                      <div class="playlist-title text-center">
-                        <h4 class="media-heading person-name ">{{this.name}}</h4>
-                      </div>
-                      <div class="frame-hexagon img-fluid"><img src="img/hexa-frame.png"></div>
+                  <div class="playlist-title text-center">
+                    <h4 class="media-heading person-name ">{{this.name}}</h4>
                   </div>
+                  <div class="hexagon" style="background-image: url({{this.images.0.url}});">
+                        <div class="hexTop"></div>
+                        <div class="hexBottom"></div>
+                      </div>
+                  <button class="btn btn-warning btn-block visible-xs visible-sm hidden-md hidden-lg">mybutton</button>
+                   <iframe class="playlist-preview" src="https://open.spotify.com/embed/playlist/{{this.id}}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+
                 </div>
             {{/each}}
           </div>
@@ -237,8 +295,6 @@
                 </div>
             {{/each}}
           </div>
-          <iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-          HELLLLLOO
         </div>
     </script>
 
@@ -254,7 +310,7 @@
          function getHashParams() {
           var hashParams = {};
           var e, r = /([^&;=]+)=?([^&;]*)/g,
-              q = window.location.href.substring(51);
+              q = window.location.href.substring(42);
           while ( e = r.exec(q)) {
              hashParams[e[1]] = decodeURIComponent(e[2]);
           }
@@ -338,6 +394,7 @@
           }
 
           document.getElementById('obtain-new-token').addEventListener('click', function() {
+            console.log("button clicked");
             $.ajax({
               url: '/refresh_token',
               data: {
