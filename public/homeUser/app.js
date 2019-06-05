@@ -33,7 +33,7 @@ particlesJS(
           color: "#fff"
         },
         polygon: {
-          nb_sides: 5
+          nb_sides: 6
         },
         image: {
           src: "img/github.svg",
@@ -52,7 +52,7 @@ particlesJS(
         }
       },
       size: {
-        value: 5,
+        value: 40,
         random: true,
         anim: {
           enable: false,
@@ -87,7 +87,7 @@ particlesJS(
       events: {
         onhover: {
           enable: true,
-          mode: "bubble"
+          mode: "repulse"
         },
         onclick: {
           enable: true,
