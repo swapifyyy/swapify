@@ -103,7 +103,20 @@
         <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
       </div>
   </div>
-    <!--Start of statistics-->
+
+   <!--Start of FAQ-->
+  <div class="container-fluid">
+    <div class="row section" id="faq">
+      <div class="heading-title text-center">
+        <h3 class="text-uppercase">Your stats</h3>
+        <hr class="title-divider">
+        <div id="history-chart"></div>
+      </div>
+    </div>
+  </div>
+
+
+    <!--Start of playlists-->
   <div class="container-fluid">
     <div class="row section" id="section-user-playlists">
 
@@ -121,15 +134,7 @@
 
 
 
-  <!--Start of FAQ-->
-  <div class="container-fluid">
-    <div class="row section" id="faq">
-      <div class="heading-title text-center">
-        <h3 class="text-uppercase">Section 2</h3>
-        <hr class="title-divider">
-      </div>
-    </div>
-  </div>
+ 
 
   <!--Start of invest-->
   <div class="container-fluid">
@@ -216,6 +221,25 @@
         </div>
     </script>
 
+    <script id="history-chart-template" type="text/x-handlebars-template">
+        <div class="container-fluid">
+          <div class="row">
+            {{#each items}}
+                <div class=" col-xs-6 col-md-6 col-lg-4">
+                  <div class="playlist-image">
+                      <img src="{{this.images.0.url}}" class="img-fluid" style="max-width: 100%" alt="image">
+                      <div class="playlist-title text-center">
+                        <h4 class="media-heading person-name ">{{this.name}}</h4>
+                      </div>
+                      <div class="frame-hexagon img-fluid"><img src="img/hexa-frame.png"></div>
+                  </div>
+                  <iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                </div>
+            {{/each}}
+          </div>
+        </div>
+    </script>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="jquery-1.10.1.min.js"></script>
     <script>
@@ -247,6 +271,10 @@
         var playlistSource = document.getElementById('playlist-template').innerHTML,
             playlistTemplate = Handlebars.compile(playlistSource),
             playlistsPlaceholder = document.getElementById('user-playlists');
+
+        var historyChartSource = document.getElementById('history-chart-template').innerHTML,
+            historyChartTemplate = Handlebars.compile(historyChartSource),
+            historyChartPlaceholder = document.getElementById('history-chart');
 
 
         var params = getHashParams();
@@ -289,6 +317,17 @@
                 console.log(response);
                 }
             });
+            /*
+            $.ajax({
+                url: 'https://api.spotify.com/v1/me/playlists',
+                headers: {
+                  'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response) {
+                playlistsPlaceholder.innerHTML = playlistTemplate(response);
+                console.log(response);
+                }
+            });*/
 
           } else {
               // render initial screen
