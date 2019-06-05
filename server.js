@@ -2,7 +2,7 @@
     url = 'https://accounts.spotify.com/authorize?client_id=1ecbade4681f492b99fa552dccf478ca&response_type=code&redirect_uri=http://localhost:8888';
     window.location.href = url;
 }*/
-
+var PORT = process.env.PORT ||8888
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
 var cors = require('cors');
@@ -142,7 +142,7 @@ app.get('/refresh_token', function(req, res) {
 });
 
 console.log('Listening on 8888');
-app.listen(8888);
+app.listen(PORT);
 
 
 
