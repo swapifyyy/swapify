@@ -517,6 +517,7 @@
         var playlist;
         var playlistIndex = index;
         $.ajax({
+          /*Pass playlist id using @index in handlebar template*/
                 url: 'https://api.spotify.com/v1/me/playlists',
                 headers: {
                   'Authorization': 'Bearer ' + access_token
@@ -527,6 +528,8 @@
                   console.log(playlistList);
                   playlist = playlistList[playlistIndex];
                   var playListTracksUrl = playlist.tracks.href;
+                  var playListId = playlist.id;
+                  var playListName = playlist.name;
                   $.ajax({
                       url: playListTracksUrl,
                       headers: {
@@ -550,7 +553,11 @@
                             artistsIdList[i] = item.track.artists[0].id;
                           }
                         }
-                        newSongs = new Array(songs.length);
+                        newSongs = {
+                          playlistId: playListId,
+                          playlistName: playListName,
+                          songs: []
+                        };
                         for (var i=0, item; item = artistsIdList[i]; i++) {
                           var topSongsForArtistUrl = 'https://api.spotify.com/v1/artists/'+item+'/top-tracks'
                           $.ajax({
@@ -563,23 +570,74 @@
                             },
                             success: function(response) 
                             { 
-                              console.log("INDEXXXXXX"+i);
                               var candidateSongs = response;
-                              console.log(candidateSongs);
+                              //console.log(candidateSongs);
                               var nCandidateSongs = candidateSongs.length;
                               
                               if(candidateSongs.length > 1){
                                 var randomCandidateIndex = Math.floor(Math.random() * Math.floor(nCandidateSongs));
-                                newSongs[i] = candidateSongs.tracks[randomCandidateIndex];
+                                newSongs.songs.push(candidateSongs.tracks[randomCandidateIndex]);
                               }else{
-                                newSongs[i] = candidateSongs.tracks[0];
+                                newSongs.songs.push(candidateSongs.tracks[0]);
                               }
                             }
                           });
                         }
+                        console.log(newSongs);
+                        /*At this point we have the playlist id, name, and cadidate newSongs to put in the playlist*/
+                        $.ajax({
+                            url: 'https://api.spotify.com/v1/me',
+                            headers: {
+                              'Authorization': 'Bearer ' + access_token
+                            },
+                            success: function(response) {
+                              var newListName = "🔥"+newSongs.playlistName+"🔥"
+                              var userId = response.id;
+                              urlToCreatePlaylist = 'https://api.spotify.com/v1/users/'+userId+'/playlists'
+                              var settings = {
+                              "async": true,
+                              "crossDomain": true,
+                              "url": urlToCreatePlaylist,
+                              "method": "POST",
+                              "headers": {
+                                "Content-Type": "application/javascript",
+                                "Authorization": 'Bearer ' + access_token,
+                                "Accept": "*/*",
+                              },
+                              "data": "{\n\"name\": \""+newListName+"\"\n}"
+                            }
 
-                       
-                          console.log(newSongs);
+                            $.ajax(settings).done(function (response) {
+                              /*At this point the new playlist has been created*/
+                              $.ajax({
+                            url: 'https://api.spotify.com/v1/me',
+                            headers: {
+                              'Authorization': 'Bearer ' + access_token
+                            },
+                            success: function(response) {
+                              var newListName = "🔥"+newSongs.playlistName+"🔥"
+                              var userId = response.id;
+                              urlToCreatePlaylist = 'https://api.spotify.com/v1/users/'+userId+'/playlists'
+                              var settings = {
+                              "async": true,
+                              "crossDomain": true,
+                              "url": urlToCreatePlaylist,
+                              "method": "POST",
+                              "headers": {
+                                "Content-Type": "application/javascript",
+                                "Authorization": 'Bearer ' + access_token,
+                                "Accept": "*/*",
+                              },
+                              "data": "{\n\"name\": \""+newListName+"\"\n}"
+                            }
+
+                            $.ajax(settings).done(function (response) {
+                              
+                            });
+                            });
+                              
+                            }
+                        });
                         
                         /*At this point we have the new artists source Ids saved*/
                         /*At this point we have the track Ids saved*/
