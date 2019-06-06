@@ -51,9 +51,13 @@
   background-size: auto 346.4102px;
   background-position: center;
   box-shadow: 0 0 30px rgba(26,203,0,0.85);
+      transition: all .2s linear;
+   -o-transition: all .2s linear;
+   -moz-transition: all .2s linear;
+   -webkit-transition: all .2s linear;
 }
 .hexagon:hover{
-  transform: scale(1.3);
+  transform: translateX(30px);
   transition: 0.5s;
 }
 
@@ -68,8 +72,8 @@
   -ms-transform: scaleY(0.5774) rotate(-45deg);
   transform: scaleY(0.5774) rotate(-45deg);
   background: inherit;
-  right: 0px;
   box-shadow: 0 0 30px rgba(26,203,0,0.85);
+  left: 43.93px;
 }
 
 /*counter transform the bg image on the caps*/
@@ -79,7 +83,7 @@
   position: absolute;
   width: 300.0000px;
   height: 173.20508075688775px;
-  -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
+  -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-200.6025px);
   -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
   transform:          rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
   -webkit-transform-origin: 0 0;
@@ -116,6 +120,88 @@
 }
 /*END TRICK HEXAGON*/
 
+/*CHEVRON TO INDICATE SCROLL DOWN*/
+.container-chevron {
+  position: relative;
+  width: 10px;
+  height: 10px;
+}
+.chevron {
+  position: absolute;
+  width: 28px;
+  height: 8px;
+  opacity: 0;
+  transform: scale3d(0.5, 0.5, 0.5);
+  animation: move 3s ease-out infinite;
+}
+
+.chevron:first-child {
+  animation: move 3s ease-out 1s infinite;
+}
+
+.chevron:nth-child(2) {
+  animation: move 3s ease-out 2s infinite;
+}
+
+.chevron:before,
+.chevron:after {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 51%;
+  background: #000;
+}
+
+.chevron:before {
+  left: 0;
+  transform: skew(0deg, 30deg);
+}
+
+.chevron:after {
+  right: 0;
+  width: 50%;
+  transform: skew(0deg, -30deg);
+}
+
+@keyframes move {
+  25% {
+    opacity: 1;
+
+  }
+  33% {
+    opacity: 1;
+    transform: translateY(30px);
+  }
+  67% {
+    opacity: 1;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
+  }
+}
+
+.text-chevron {
+  display: block;
+  margin-top: 75px;
+  margin-left: -30px;
+  font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-size: 12px;
+  color: #fff;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: .25;
+  animation: pulse 2s linear alternate infinite;
+}
+
+@keyframes pulse {
+  to {
+    opacity: 1;
+  }
+  /*END CHEVRON TO INDICATE SCROLL DOWN*/
+
     </style>
 </head>
 <body id="myPage">
@@ -144,8 +230,15 @@
   <script type="text/javascript" src="particles.js"></script>
   <script type="text/javascript" src="app.js"></script>
   <div class="text">
-    <h1>SWAPIFY YOUR</h1>
-    <center><h2>MUSIC</h2></center>
+    <center><h1>Start swaping</h1></center>
+    <center>
+      <div class="container-chevron">
+        <div class="chevron"></div>
+        <div class="chevron"></div>
+        <div class="chevron"></div>
+        <span class="text-chevron"></span>
+      </div>
+    </center>
   </div>
 
   <div class="container">
@@ -153,7 +246,7 @@
         <h1>This is an example of the Authorization Code flow</h1>
         <a href="/login" class="btn btn-primary">Log in with Spotify</a>
       </div>
-      <div id="loggedin">
+     
         <div id="user-profile">
         </div>
         <div id="oauth">
@@ -162,7 +255,7 @@
           <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
         </div>
         
-      </div>
+   
   </div>
 
    <!--Start of FAQ-->
@@ -240,7 +333,7 @@
     <script id="user-profile-template" type="text/x-handlebars-template">
       <div class="row text-center">
         <div class="col-md-12 col-xs-12 col-lg-12">
-          <h1>Logged in as {{display_name}}</h1>
+          <h1>Welcome {{display_name}} !</h1>
         </div>
       </div>
 
@@ -250,8 +343,8 @@
       <div class="row text-center">
         <div class="col-md-12 col-xs-12 col-lg-12">
           <dl class="dl-horizontal">
-            <dt>Access token</dt><dd >{{access_token}}</dd>
-            <dt>Refresh token</dt><dd >{{refresh_token}}</dd>
+            <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
+            <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}</dd>
           </dl>
         </div>
       </div> 
@@ -310,7 +403,7 @@
          function getHashParams() {
           var hashParams = {};
           var e, r = /([^&;=]+)=?([^&;]*)/g,
-              q = window.location.href.substring(51);
+              q = window.location.href.substring(42);
           while ( e = r.exec(q)) {
              hashParams[e[1]] = decodeURIComponent(e[2]);
           }
