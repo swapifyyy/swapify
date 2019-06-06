@@ -17,8 +17,8 @@ var client_secret = '55fb19f53e42458082777fb047e17d3d'; // Your secret
 * for deploying localy in localhost:8888 just comment the seond 
 * delaration of redirect uri
 */
-//var redirect_uri =  'http://localhost:8888/home'; // Your redirect uri
-var redirect_uri =  'https://swapifyy.herokuapp.com/home';
+var redirect_uri =  'http://localhost:8888/home'; // Your redirect uri
+//var redirect_uri =  'https://swapifyy.herokuapp.com/home';
 
 console.log(redirect_uri);
 /**
@@ -53,7 +53,7 @@ function(req, res) {
 
   // your application requests authorization
   console.log("requesting access code...");
-  var scope = 'user-read-private user-read-email';
+  var scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',

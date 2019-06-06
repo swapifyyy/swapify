@@ -230,7 +230,7 @@
   <script type="text/javascript" src="particles.js"></script>
   <script type="text/javascript" src="app.js"></script>
   <div class="text">
-    <center><h1>Start swaping</h1></center>
+    <center><h1>Start swapping</h1></center>
     <center>
       <div class="container-chevron">
         <div class="chevron"></div>
@@ -253,6 +253,7 @@
         </div>
         <div class="row text-center">
           <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
+          <button class="btn btn-default" id="btnjojo">JOJO</button>
         </div>
         
    
@@ -362,10 +363,8 @@
                         <div class="hexTop"></div>
                         <div class="hexBottom"></div>
                       </div>
-                  <button class="btn btn-warning btn-block visible-xs visible-sm hidden-md hidden-lg">mybutton</button>
+                  <button class="btn btn-warning btn-block" id="btn-swapper{{@index}}" onclick="swapIt({{@index}})">S W A P</button>
                    <iframe class="playlist-preview" src="https://open.spotify.com/embed/playlist/{{this.id}}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-
-
                 </div>
             {{/each}}
           </div>
@@ -403,7 +402,7 @@
          function getHashParams() {
           var hashParams = {};
           var e, r = /([^&;=]+)=?([^&;]*)/g,
-              q = window.location.href.substring(51);
+              q = window.location.href.substring(42);
           while ( e = r.exec(q)) {
              hashParams[e[1]] = decodeURIComponent(e[2]);
           }
@@ -503,6 +502,99 @@
           }, false);
         }
       })();
+    </script>
+    <script type="text/javascript">
+      function swapIt(index){
+        var hashParams = {};
+          var e, r = /([^&;=]+)=?([^&;]*)/g,
+              q = window.location.href.substring(42);
+          while ( e = r.exec(q)) {
+             hashParams[e[1]] = decodeURIComponent(e[2]);
+          }
+        console.log("Swapping song number"+index);
+        var access_token = hashParams.access_token;
+        var playlistList;
+        var playlist;
+        var playlistIndex = index;
+        $.ajax({
+                url: 'https://api.spotify.com/v1/me/playlists',
+                headers: {
+                  'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response) {
+                console.log(response);
+                  playlistList = response.items;
+                  console.log(playlistList);
+                  playlist = playlistList[playlistIndex];
+                  var playListTracksUrl = playlist.tracks.href;
+                  $.ajax({
+                      url: playListTracksUrl,
+                      headers: {
+                        'Authorization': 'Bearer ' + access_token
+                      },
+                      success: function(response) {
+                        console.log("This are the playlist songs")
+                        var songs = response.items;
+                        console.log(songs);
+                        /*Now that we have all the songs. Save song artists*/
+                        var artistsIdList = new Array(songs.length);
+                        for (var i=0, item; item = songs[i]; i++) {
+                          //console.log("Looping: index ", i, "artistName" + item.track.artists[0].name);
+                          var nArtistsPerSong = item.track.artists.length;
+                          //console.log("nArtistsPerSong: "+nArtistsPerSong);
+                          
+                          if(nArtistsPerSong > 1){
+                            var randomArtistIndex = Math.floor(Math.random() * Math.floor(nArtistsPerSong));
+                            artistsIdList[i] = item.track.artists[randomArtistIndex].id;
+                          }else{
+                            artistsIdList[i] = item.track.artists[0].id;
+                          }
+                        }
+                        newSongs = new Array(songs.length);
+                        for (var i=0, item; item = artistsIdList[i]; i++) {
+                          var topSongsForArtistUrl = 'https://api.spotify.com/v1/artists/'+item+'/top-tracks'
+                          $.ajax({
+                            data: { 
+                              country: 'US'
+                            },
+                            url: topSongsForArtistUrl,
+                            headers: {
+                              'Authorization': 'Bearer ' + access_token
+                            },
+                            success: function(response) 
+                            { 
+                              console.log("INDEXXXXXX"+i);
+                              var candidateSongs = response;
+                              console.log(candidateSongs);
+                              var nCandidateSongs = candidateSongs.length;
+                              
+                              if(candidateSongs.length > 1){
+                                var randomCandidateIndex = Math.floor(Math.random() * Math.floor(nCandidateSongs));
+                                newSongs[i] = candidateSongs.tracks[randomCandidateIndex];
+                              }else{
+                                newSongs[i] = candidateSongs.tracks[0];
+                              }
+                            }
+                          });
+                        }
+
+                       
+                          console.log(newSongs);
+                        
+                        /*At this point we have the new artists source Ids saved*/
+                        /*At this point we have the track Ids saved*/
+                        /*WE PROCEED NOW TO REPLACE*/
+                        /*2 STEPS*/
+                        /*--1-Get spotify:track:id of respective to each artist taken and make a LIST(spotify:track:id)*/
+                        /*--2-From the LIST(spotify:track:id), make use of each spotify:track:id to build the body of the PUT request */
+                        //console.log("Artist ids: "+artistsIdList);
+
+                      }
+                  });
+                }
+            });
+
+      }
     </script>
 
     <script>
