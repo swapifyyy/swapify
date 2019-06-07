@@ -595,45 +595,53 @@
                               var userId = response.id;
                               urlToCreatePlaylist = 'https://api.spotify.com/v1/users/'+userId+'/playlists'
                               var settings = {
-                              "async": true,
-                              "crossDomain": true,
-                              "url": urlToCreatePlaylist,
-                              "method": "POST",
-                              "headers": {
-                                "Content-Type": "application/javascript",
-                                "Authorization": 'Bearer ' + access_token,
-                                "Accept": "*/*",
-                              },
-                              "data": "{\n\"name\": \""+newListName+"\"\n}"
-                            }
+                                "async": true,
+                                "crossDomain": true,
+                                "url": urlToCreatePlaylist,
+                                "method": "POST",
+                                "headers": {
+                                  "Content-Type": "application/javascript",
+                                  "Authorization": 'Bearer ' + access_token,
+                                  "Accept": "*/*",
+                                },
+                                "data": "{\n\"name\": \""+newListName+"\"\n}"
+                              }
 
                             $.ajax(settings).done(function (response) {
-                              /*At this point the new playlist has been created*/
-                              $.ajax({
-                            url: 'https://api.spotify.com/v1/me',
-                            headers: {
-                              'Authorization': 'Bearer ' + access_token
-                            },
-                            success: function(response) {
-                              var newListName = "🔥"+newSongs.playlistName+"🔥"
-                              var userId = response.id;
-                              urlToCreatePlaylist = 'https://api.spotify.com/v1/users/'+userId+'/playlists'
-                              var settings = {
-                              "async": true,
-                              "crossDomain": true,
-                              "url": urlToCreatePlaylist,
-                              "method": "POST",
-                              "headers": {
-                                "Content-Type": "application/javascript",
-                                "Authorization": 'Bearer ' + access_token,
-                                "Accept": "*/*",
-                              },
-                              "data": "{\n\"name\": \""+newListName+"\"\n}"
-                            }
+                              newPlayListData = response;
+                              urlToFillPlayList = "https://api.spotify.com/v1/playlists/"+newPlayListData.id+"/tracks"
+                              console.log(newPlayListData);
 
-                            $.ajax(settings).done(function (response) {
+                              /*Build data array */
+                              listOfNewSongsOK = "{\"uris\": [\"spotify:track:116H0KvKr2Zl4RPuVBruDO\", \"spotify:track:1Ej96GIBCTvgH7tNX1r3qr\",\"spotify:track:1Ej96GIBCTvgH7tNX1r3qr\",\"spotify:track:1Ej96GIBCTvgH7tNX1r3qr\",\"spotify:track:1Ej96GIBCTvgH7tNX1r3qr\"]}"
+                              console.log(listOfNewSongsOK);
+                              listOfNewSongs = {
+                                uris: []
+                              }
+                              console.log(newSongs.songs);
+                              for (var i=0, item; item = newSongs.songs[i]; i++) {
+                                listOfNewSongs.uris.push(item.uri);
+                              }
+
+                              console.log(listOfNewSongs);
                               
-                            });
+                              var settings = {
+                                "async": true,
+                                "crossDomain": true,
+                                "url": urlToFillPlayList,
+                                "method": "PUT",
+                                "headers": {
+                                  "Content-Type": "application/json",
+                                  "Authorization": 'Bearer ' + access_token,
+                                  "Accept": "*/*"
+                                },
+                                "processData": false,
+                                "data": JSON.stringify(listOfNewSongs)
+                              }
+
+                              $.ajax(settings).done(function (response) {
+                                console.log(response);
+                              });
                             });
                               
                             }
