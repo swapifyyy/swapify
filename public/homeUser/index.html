@@ -203,6 +203,7 @@
   /*END CHEVRON TO INDICATE SCROLL DOWN*/
 
     </style>
+
 </head>
 <body id="myPage">
   <nav class="navbar navbar-inverse navbar-fixed-top navbar-custom" id="myNavbar">
@@ -227,6 +228,7 @@
   </nav>
   <!--End of navigation-->
   <div id="particles-js"></div>
+  <script src="toast.js"></script>
   <script type="text/javascript" src="particles.js"></script>
   <script type="text/javascript" src="app.js"></script>
   <div class="text">
@@ -402,7 +404,7 @@
          function getHashParams() {
           var hashParams = {};
           var e, r = /([^&;=]+)=?([^&;]*)/g,
-              q = window.location.href.substring(51);
+              q = window.location.href.substring(42);
           while ( e = r.exec(q)) {
              hashParams[e[1]] = decodeURIComponent(e[2]);
           }
@@ -507,7 +509,7 @@
       function swapIt(index){
         var hashParams = {};
           var e, r = /([^&;=]+)=?([^&;]*)/g,
-              q = window.location.href.substring(51);
+              q = window.location.href.substring(42);
           while ( e = r.exec(q)) {
              hashParams[e[1]] = decodeURIComponent(e[2]);
           }
@@ -612,9 +614,8 @@
                               urlToFillPlayList = "https://api.spotify.com/v1/playlists/"+newPlayListData.id+"/tracks"
                               console.log(newPlayListData);
 
-                              /*Build data array */
-                              listOfNewSongsOK = "{\"uris\": [\"spotify:track:116H0KvKr2Zl4RPuVBruDO\", \"spotify:track:1Ej96GIBCTvgH7tNX1r3qr\",\"spotify:track:1Ej96GIBCTvgH7tNX1r3qr\",\"spotify:track:1Ej96GIBCTvgH7tNX1r3qr\",\"spotify:track:1Ej96GIBCTvgH7tNX1r3qr\"]}"
-                              console.log(listOfNewSongsOK);
+
+
                               listOfNewSongs = {
                                 uris: []
                               }
@@ -622,7 +623,7 @@
                               for (var i=0, item; item = newSongs.songs[i]; i++) {
                                 listOfNewSongs.uris.push(item.uri);
                               }
-
+                              console.log("HERE");
                               console.log(listOfNewSongs);
                               
                               var settings = {
@@ -640,7 +641,9 @@
                               }
 
                               $.ajax(settings).done(function (response) {
-                                console.log(response);
+                                alert("Your list has been swapped succesfully");
+                                
+                                
                               });
                             });
                               
