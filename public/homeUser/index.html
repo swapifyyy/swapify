@@ -190,7 +190,7 @@
   margin-left: -30px;
   font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
   font-size: 12px;
-  color: #fff;
+  color: #000;
   text-transform: uppercase;
   white-space: nowrap;
   opacity: .25;
@@ -218,9 +218,8 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#faq">Stats</a></li>
-          <li><a href="#statistics">Section 2</a></li>
-          <li><a href="#invest">Section 3</a></li>
+          <li><a href="#yourstats">Why Swapping</a></li>
+          <li><a href="#statistics">Swap</a></li>
           <li><a href="#donations">Donations</a></li>
         </ul>
       </div>
@@ -238,7 +237,7 @@
         <div class="chevron"></div>
         <div class="chevron"></div>
         <div class="chevron"></div>
-        <span class="text-chevron"></span>
+        <span class="text-chevron">Scroll Down</span>
       </div>
     </center>
   </div>
@@ -256,28 +255,27 @@
         <div class="row text-center">
           <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
         </div>
-        
-   
+
   </div>
 
-   <!--Start of FAQ-->
+   <!--Why Swapping-->
   <div class="container-fluid">
     <div class="row section" id="stats">
       <div class="heading-title text-center">
-        <h3 class="text-uppercase">Your stats</h3>
+        <h3 class="text-uppercase">Why Swapping</h3>
         <hr class="title-divider">
-        <div id="history-chart"></div>
+        <!--Uncomment this to load<div id="history-chart"></div>-->
       </div>
     </div>
   </div>
 
 
-    <!--Start of playlists-->
+    <!--Swap-->
   <div class="container-fluid">
     <div class="row section" id="section-user-playlists">
 
       <div class="heading-title text-center">
-        <h3 class="text-uppercase">Your Playlists</h3>
+        <h3 class="text-uppercase">Swap</h3>
         <hr class="title-divider">
         <div id="user-playlists">
         </div>
@@ -287,22 +285,7 @@
     </div>
   </div>
 
-
-
-
- 
-
-  <!--Start of invest-->
-  <div class="container-fluid">
-    <div class="row section" id="invest">
-      <div class="heading-title text-center">
-        <h3 class="text-uppercase">Section 3</h3>
-        <hr class="title-divider">
-      </div>
-    </div>
-  </div>
-
-  <!--Start of Contact-->
+  <!--Donations-->
   <div class="container-fluid">
     <div class="row section" id="donations">
 
@@ -375,18 +358,9 @@
     <script id="history-chart-template" type="text/x-handlebars-template">
         <div class="container-fluid">
           <div class="row">
-            {{#each items}}
-                <div class=" col-xs-6 col-md-6 col-lg-4">
-                  <div class="playlist-image">
-                      <img src="{{this.images.0.url}}" class="img-fluid" style="max-width: 100%" alt="image">
-                      <div class="playlist-title text-center">
-                        <h4 class="media-heading person-name ">{{this.name}}</h4>
-                      </div>
-                      <div class="frame-hexagon img-fluid"><img src="img/hexa-frame.png"></div>
-                  </div>
+           <div class="col-md-5 col-md-offset-2">
 
-                </div>
-            {{/each}}
+           </div>
           </div>
         </div>
     </script>
@@ -403,7 +377,7 @@
          function getHashParams() {
           var hashParams = {};
           var e, r = /([^&;=]+)=?([^&;]*)/g,
-              q = window.location.href.substring(51);
+              q = window.location.href.substring(42);
           while ( e = r.exec(q)) {
              hashParams[e[1]] = decodeURIComponent(e[2]);
           }
@@ -475,7 +449,7 @@
                   'Authorization': 'Bearer ' + access_token
                 },
                 success: function(response) {
-                playlistsPlaceholder.innerHTML = playlistTemplate(response);
+                historyChartPlaceholder.innerHTML = historyChartTemplate(response);
                 console.log(response);
                 }
             });*/
@@ -508,7 +482,7 @@
       function swapIt(index){
         var hashParams = {};
           var e, r = /([^&;=]+)=?([^&;]*)/g,
-              q = window.location.href.substring(51);
+              q = window.location.href.substring(42);
           while ( e = r.exec(q)) {
              hashParams[e[1]] = decodeURIComponent(e[2]);
           }
@@ -640,7 +614,13 @@
                               }
 
                               $.ajax(settings).done(function (response) {
-                                toastSuccessPlaylistCreated(newListName);
+                                    toastSuccessPlaylistCreated(newListName); 
+                                    setTimeout(function() {
+                                      window.location.hash = '#section-user-playlists';
+                                    window.location.reload(true);
+                                    }, 2500);
+                                    
+                                     
                               });
                             });
                               
@@ -691,8 +671,9 @@
     title:'Success',
     subtitle:'New Playlist'+newPlaylistTitle+'has been created',
     theme:macOSNotifThemes.Success,
-    btn2Text:null,
-    sounds:true
+    mainLink:'#',
+    btn1Text:null,
+    sounds: true
 })
     }
   </script>
