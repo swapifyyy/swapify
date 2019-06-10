@@ -61,12 +61,10 @@ body {
   color: blue !important;
 }
 .text {
-  position: absolute;
-  top: 50%;
-  right: 50%;
-  transform: translate(50%, -50%);
+  position: relative;
+  transform: translateY(250%);
   color: white;
-  max-width: 90%;
+  max-width: 100%;
   padding: 2em 3em;
   background: rgba(8, 0, 0, 0.2);
   text-shadow: 0px 0px 2px #131415;
