@@ -531,10 +531,13 @@
                         for (var i=0, item; item = songs[i]; i++) {
                           //console.log("Looping: index ", i, "artistName" + item.track.artists[0].name);
                           var nArtistsPerSong = item.track.artists.length;
-                          //console.log("nArtistsPerSong: "+nArtistsPerSong);
+                          console.log("nArtistsPerSong: ");
                           
+                          console.log(nArtistsPerSong);
                           if(nArtistsPerSong > 1){
+                            console.log("randomArtistIndex: ");
                             var randomArtistIndex = Math.floor(Math.random() * Math.floor(nArtistsPerSong));
+                            console.log(randomArtistIndex);
                             artistsIdList[i] = item.track.artists[randomArtistIndex].id;
                           }else{
                             artistsIdList[i] = item.track.artists[0].id;
@@ -557,19 +560,25 @@
                             },
                             success: function(response) 
                             { 
+                              console.log("candidateSongs");
+                              console.log(response);
                               var candidateSongs = response;
                               //console.log(candidateSongs);
-                              var nCandidateSongs = candidateSongs.length;
-                              
-                              if(candidateSongs.length > 1){
+                              var nCandidateSongs = Object.keys(candidateSongs.tracks).length;
+                              console.log("nCandidateSongs:");
+                              console.log(nCandidateSongs);
+                              if(Object.keys(candidateSongs.tracks).length > 1){
+                                console.log("candidate songs > 1");
                                 var randomCandidateIndex = Math.floor(Math.random() * Math.floor(nCandidateSongs));
                                 newSongs.songs.push(candidateSongs.tracks[randomCandidateIndex]);
                               }else{
+                                console.log("candidate songs = 1");
                                 newSongs.songs.push(candidateSongs.tracks[0]);
                               }
                             }
                           });
                         }
+                        console.log("THIS ARE THE NEW SONGS: ");
                         console.log(newSongs);
                         /*At this point we have the playlist id, name, and cadidate newSongs to put in the playlist*/
                         $.ajax({
@@ -627,12 +636,10 @@
 
                               $.ajax(settings).done(function (response) {
                                     toastSuccessPlaylistCreated(newListName); 
-                                    setTimeout(function() {
+                                    /*setTimeout(function() {
                                       window.location.hash = '#section-user-playlists';
                                     window.location.reload(true);
-                                    }, 2500);
-                                    
-                                     
+                                    }, 2500); */                                 
                               });
                             });
                               
