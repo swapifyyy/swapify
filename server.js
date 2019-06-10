@@ -17,8 +17,8 @@ var client_secret = '55fb19f53e42458082777fb047e17d3d'; // Your secret
 * for deploying localy in localhost:8888 just comment the seond 
 * delaration of redirect uri
 */
-var redirect_uri =  'http://localhost:8888/home'; // Your redirect uri
-//var redirect_uri =  'https://swapifyy.herokuapp.com/home';
+//var redirect_uri =  'http://localhost:8888/home'; // Your redirect uri
+var redirect_uri =  'https://swapifyy.herokuapp.com/home';
 
 console.log(redirect_uri);
 /**
