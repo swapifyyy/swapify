@@ -1,0 +1,46 @@
+memo
+
+  <!--Donations-->
+  <div class="container-fluid">
+    <div class="row section" id="donations">
+
+      <div class="heading-title text-center">
+        <h3 class="text-uppercase"><i class="fab fa-bitcoin"></i> Donations</h3>
+        <hr class="title-divider">
+      </div>
+      <div class="col-md-12 col-sm-12 maily">
+        <div class="contact-mail-box text-center">
+          <span class="button dimond">3J5oLbiFNFEst9wjRdEW3BrCqtpS3aHatN</span>
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12 maily">
+        <div class="text-center">
+          <img src="img/address-btc.png" style="width: 30%; margin-bottom: 100px;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+        <nav class="navbar navbar-inverse navbar-fixed-top navbar-custom" id="myNavbar">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="img/logoSwapify.png" alt="Swapify"></a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#yourstats">Why Swapping</a></li>
+              <li><a href="#statistics">Swap</a></li>
+              <li><a href="#donations">Donations</a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-user"></span>{{display_name}}</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Login</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
