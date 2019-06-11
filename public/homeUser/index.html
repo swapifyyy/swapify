@@ -52,11 +52,17 @@
   background-size: auto 346.4102px;
   background-position: center;
   box-shadow: 0 0 30px rgba(26,203,0,0.85);
-      transition: all .2s linear;
+    transition: all .2s linear;
    -o-transition: all .2s linear;
    -moz-transition: all .2s linear;
    -webkit-transition: all .2s linear;
    transform: translateX(50px) scale(1.1) rotate(90deg);
+}
+
+.hexagon:hover{
+  transform-origin: 50% 50%;
+  transform: scale(1.1);
+  transition: 0s;
 }
 
 .hexTop,
@@ -291,6 +297,24 @@
     </div>
   </div>
 
+    <!--Donations-->
+  <div class="container-fluid">
+    <div class="row section" id="ar-section">
+
+      <div class="heading-title text-center">
+        <h3 class="text-uppercase"></i>AR</h3>
+        <hr class="title-divider">
+      </div>
+      <div class="col-md-12 col-sm-12 maily">
+        <div class="contact-mail-box text-center">
+          <span class="button dimond">We though having our logo in AR was cool, so we did it</span>
+          <span class="button dimond">Available for iOS only</span>
+          <a rel="ar" href="img/logoswapify.usdz"><img  src="img/ar-logo.png" style="width: 20%; margin-bottom: 100px;"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <!-- fd 
     <div class="container">
       <div id="login">
@@ -384,6 +408,7 @@
               <li><a href="#about-section">About</a></li>
               <li><a href="#swap-section">Swap</a></li>
               <li><a href="#donation-section">Donations</a></li>
+              <li><a href="#ar-section">AR</a></li>
                <li><a href="#"><span class="glyphicon glyphicon-user"></span>{{display_name}}</a>
             </ul>
           </div>
@@ -661,7 +686,7 @@
                               $.ajax(settings).done(function (response) {
                                     toastSuccessPlaylistCreated(newListName); 
                                     setTimeout(function() {
-                                      window.location.hash = '#section-user-playlists';
+                                      window.location.hash = '#swap-section';
                                     window.location.reload(true);
                                     }, 2500);                                 
                               });
