@@ -56,10 +56,7 @@
    -o-transition: all .2s linear;
    -moz-transition: all .2s linear;
    -webkit-transition: all .2s linear;
-}
-.hexagon:hover{
-  transform: translateX(50px) scale(1.1) rotate(90deg);
-  transition: 0.5s;
+   transform: translateX(50px) scale(1.1) rotate(90deg);
 }
 
 .hexTop,
@@ -202,7 +199,18 @@
     opacity: 1;
   }
   /*END CHEVRON TO INDICATE SCROLL DOWN*/
+  /* Add an orange color to all icons and set the font-size */
+.logo-small {
+  color: #f4511e;
+  font-size: 50px;
+}
+
+.logo {
+  color: #f4511e;
+  font-size: 200px;
+
     </style>
+
 
 </head>
 <body id="myPage">
@@ -227,31 +235,37 @@
     <script src="toast.js"></script>
     <script type="text/javascript" src="particles.js"></script>
     <script type="text/javascript" src="app.js"></script>
-    
-
-  <div class="container">
-      <div id="login">
-        <h1>This is an example of the Authorization Code flow</h1>
-        <a href="/login" class="btn btn-primary">Log in with Spotify</a>
-      </div>
-     
+    <div class="container">
         <div id="user-profile">
         </div>
-        <div id="oauth">
-        </div>
-        <div class="row text-center">
-          <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
-        </div>
+    </div>
 
-  </div>
+
 
    <!--Why Swapping-->
   <div class="container-fluid">
     <div class="row section" id="stats">
       <div class="heading-title text-center">
-        <h3 class="text-uppercase">Why Swapping</h3>
+        <h3 class="text-uppercase">What is Swapify?</h3>
         <hr class="title-divider">
         <!--Uncomment this to load<div id="history-chart"></div>-->
+        <div class="jumbotron"> Swapify is a web application that uses the Spotify API to give you new cool possibilities with your current playlists</div>
+        <div class="col-sm-4">
+          <span class="glyphicon glyphicon-refresh logo-small"></span>
+          <h4>SWAP 1</h4>
+          <p>Lorem ipsum dolor sit amet..</p>
+        </div>
+        <div class="col-sm-4">
+          <span class="glyphicon glyphicon-refresh logo-small"></span>
+          <h4>SWAP 2</h4>
+          <p>Lorem ipsum dolor sit amet..</p>
+        </div>
+        <div class="col-sm-4">
+          <span class="glyphicon glyphicon-remove logo-small"></span>
+          <h4>REMOVE</h4>
+          <p>Lorem ipsum dolor sit amet..</p>
+        </div>
+        </div>
       </div>
     </div>
   </div>
@@ -290,6 +304,21 @@
   </div>
 
 
+    <div class="container">
+      <div id="login">
+        <h1>This is an example of the Authorization Code flow</h1>
+        <a href="/login" class="btn btn-primary">Log in with Spotify</a>
+      </div>
+     
+        
+        <div id="oauth">
+        </div>
+        <div class="row text-center">
+          <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
+        </div>
+  </div>
+
+
 
   <footer class="container-fluid text-center">
     <a href="#myPage" title="To Top">
@@ -323,17 +352,19 @@
         <div class="container-fluid">
           <div class="row text-center">
             {{#each items}}
-                <div class=" col-xs-6 col-md-4 col-lg-4">
-                  <div class="playlist-title text-center">
-                    <h4 class="media-heading person-name ">{{this.name}}</h4>
-                  </div>
-                  <div class="hexagon" style="background-image: url({{this.images.0.url}});">
-                        <div class="hexTop"></div>
-                        <div class="hexBottom"></div>
-                      </div>
-                  <button class="btn-swap-1 btn btn-success btn-block btn-lg" id="btn-swapper{{@index}}" onclick="swapIt({{@index}})">Swap to a new playlist</button>
-                   <iframe class="playlist-preview" src="https://open.spotify.com/embed/playlist/{{this.id}}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <div style="margin: 0px">
+              <div class="col-xs-6 col-md-4 col-lg-4">
+                <div class="playlist-title text-center">
+                  <h4 class="media-heading person-name ">{{this.name}}</h4>
                 </div>
+                <div class="hexagon" style="background-image: url({{this.images.0.url}});">
+                      <div class="hexTop"></div>
+                      <div class="hexBottom"></div>
+                    </div>
+                <button class=" btn btn-success btn-block btn-lg " id="btn-swapper{{@index}}" onclick="swapIt({{@index}})" style="border-radius: 0px;">Swap to a new playlist</button>
+                 <iframe class="playlist-preview" src="https://open.spotify.com/embed/playlist/{{this.id}}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+              </div>
+            </div>
             {{/each}}
           </div>
         </div>
@@ -365,7 +396,7 @@
               <li><a href="#yourstats">Why Swapping</a></li>
               <li><a href="#statistics">Swap</a></li>
               <li><a href="#donations">Donations</a></li>
-              <li>{{display_name}}</li>
+               <li><a href="#"><span class="glyphicon glyphicon-user"></span>{{display_name}}</a>
             </ul>
           </div>
         </div>
@@ -560,19 +591,15 @@
                             },
                             success: function(response) 
                             { 
-                              console.log("candidateSongs");
-                              console.log(response);
+
                               var candidateSongs = response;
                               //console.log(candidateSongs);
                               var nCandidateSongs = Object.keys(candidateSongs.tracks).length;
-                              console.log("nCandidateSongs:");
-                              console.log(nCandidateSongs);
+
                               if(Object.keys(candidateSongs.tracks).length > 1){
-                                console.log("candidate songs > 1");
                                 var randomCandidateIndex = Math.floor(Math.random() * Math.floor(nCandidateSongs));
                                 newSongs.songs.push(candidateSongs.tracks[randomCandidateIndex]);
                               }else{
-                                console.log("candidate songs = 1");
                                 newSongs.songs.push(candidateSongs.tracks[0]);
                               }
                             }
@@ -636,10 +663,10 @@
 
                               $.ajax(settings).done(function (response) {
                                     toastSuccessPlaylistCreated(newListName); 
-                                    /*setTimeout(function() {
+                                    setTimeout(function() {
                                       window.location.hash = '#section-user-playlists';
                                     window.location.reload(true);
-                                    }, 2500); */                                 
+                                    }, 2500);                                 
                               });
                             });
                               
