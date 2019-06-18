@@ -9,8 +9,8 @@ var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-var client_id = 'a6a30c3cba4c42fda710e2af6d6f4268'; // Your client id
-var client_secret = '55fb19f53e42458082777fb047e17d3d'; // Your secret
+var client_id = 'ce5338b55dae47da81b2176a375b176f'; // Your client id
+var client_secret = '32ab56c55e5640b0b3a4855a0959f251'; // Your secret
 
 /*IMPORTANT
 * To deploy in heroku uncomment the second declaration of redirect_uri 
