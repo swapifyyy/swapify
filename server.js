@@ -18,7 +18,7 @@ var client_secret = '32ab56c55e5640b0b3a4855a0959f251'; // Your secret
 * delaration of redirect uri
 */
 //var redirect_uri =  'http://localhost:8888/home'; // Your redirect uri
-var redirect_uri =  'https://swapifyy.herokuapp.com/home';
+var redirect_uri =  'https://swapify123.herokuapp.com/home';
 
 console.log(redirect_uri);
 /**
