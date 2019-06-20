@@ -482,6 +482,7 @@
                   'Authorization': 'Bearer ' + access_token
                 },
                 success: function(response) {
+                  console.log("HERE START 2");
                   console.log(response);
                   navbarPlaceholder.innerHTML = navbarTemplate(response);
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
