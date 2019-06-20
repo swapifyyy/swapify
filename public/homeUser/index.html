@@ -429,7 +429,7 @@
          function getHashParams() {
           var hashParams = {};
           var e, r = /([^&;=]+)=?([^&;]*)/g,
-              q = window.location.href.substring(48);
+              q = window.location.href.substring(51);
           while ( e = r.exec(q)) {
              hashParams[e[1]] = decodeURIComponent(e[2]);
           }
@@ -545,7 +545,7 @@
       function swapIt(index){
         var hashParams = {};
           var e, r = /([^&;=]+)=?([^&;]*)/g,
-              q = window.location.href.substring(48);
+              q = window.location.href.substring(53);
           while ( e = r.exec(q)) {r
              hashParams[e[1]] = decodeURIComponent(e[2]);
           }
@@ -706,7 +706,7 @@
       function removeIt(index){
         var hashParams = {};
           var e, r = /([^&;=]+)=?([^&;]*)/g,
-              q = window.location.href.substring(48);
+              q = window.location.href.substring(53);
           while ( e = r.exec(q)) {r
              hashParams[e[1]] = decodeURIComponent(e[2]);
           }
@@ -717,7 +717,7 @@
         var playlistIndex = index;
         var hashParams = {};
           var e, r = /([^&;=]+)=?([^&;]*)/g,
-              q = window.location.href.substring(48);
+              q = window.location.href.substring(53);
           while ( e = r.exec(q)) {r
              hashParams[e[1]] = decodeURIComponent(e[2]);
           }
